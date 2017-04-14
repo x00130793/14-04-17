@@ -1,0 +1,79 @@
+@import helper._
+@(categories: List[models.Category], user: models.users.User, catId: Long, filter: String, prod: models.Product, cList: List[models.productsAdditions.Comment], commentForm: Form[productsAdditions.Comment], size: models.Size)
+@main("productDetails", user,  categories, catId, filter) {
+				<div class="col-sm-12 padding-right">
+					<div class="product-details"><!--product-details-->
+						<div class="col-sm-5">
+							<div class="view-product">
+								<img src="/assets/images/productImages/@(prod.getId).jpg" alt="" />
+								
+							</div>
+							<div id="similar-product" class="carousel slide" data-ride="carousel">
+								
+								  
+
+								  <!-- Controls -->
+								  <a class="left item-control" href="#similar-product" data-slide="prev">
+									<i class="fa fa-angle-left"></i>
+								  </a>
+								  <a class="right item-control" href="#similar-product" data-slide="next">
+									<i class="fa fa-angle-right"></i>
+								  </a>
+							</div>
+							
+
+						</div>
+						<div class="col-sm-7">
+							<div class="product-information"><!--/product-information-->
+								
+								<h2>@prod.getName</h2>
+								
+								
+								<span>
+									<span>€@prod.getPrice</span>
+									
+									<button type="button" class="btn btn-fefault cart">
+										<a href="@routes.ShoppingCtrl.addToBasket(prod.getId)" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
+									</button>
+								</span>
+								
+								<div class="form-group ">
+  								<label for="sel1">Size:</label>
+								  
+								</div>
+								<p><b>Availability:</b> In Stock</p>
+								<p><b>Condition:</b> New</p>
+								<p><b>Brand:</b> A&JS</p>
+								
+							</div><!--/product-information-->
+						</div>
+					</div><!--/product-details-->
+
+						<div class="tab-pane fade active in" id="reviews" >
+							<div class="col-sm-12">
+								@for(c <- cList) {
+									<div class="product-information">
+									<ul>
+										<li><a href=""><i class="fa fa-user"></i>@user.getfName()</a></li>
+										<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
+										<li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
+									</ul>
+									<p> @c.getContent</p>
+									</div>
+								}
+								<p><b>Write Your Review</b></p>
+
+
+
+									@form(action = routes.CustomerCtrl.comment(catId, filter, prod.getId()), 'class -> "form-horizontal", 'role -> "form") {
+									@inputText(commentForm("content"), '_label -> "Write your comment here", 'class -> "form-control")
+										<input type="submit" value="Add comment" class="btn btn-default pull-right">
+									}
+
+
+							</div>
+						</div>
+					
+					
+				</div>
+}

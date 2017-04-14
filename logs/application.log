@@ -1,0 +1,5 @@
+2017-04-14 14:02:38,748 [INFO] from application in ForkJoinPool-1-worker-1 - Creating Pool for datasource 'default'
+2017-04-14 14:02:39,997 [INFO] from play.api.db.DefaultDBApi in ForkJoinPool-1-worker-1 - Database [default] connected at jdbc:h2:file:./data/OnlineShop
+2017-04-14 14:02:42,141 [WARN] from com.avaje.ebeaninternal.server.deploy.BeanDescriptorManager in ForkJoinPool-1-worker-1 - Bean [models.Size] has no unique id set
+2017-04-14 14:02:42,790 [INFO] from application in ForkJoinPool-1-worker-1 - ApplicationTimer demo: Starting application at 2017-04-14T13:02:42.787Z
+2017-04-14 14:02:45,048 [INFO] from play.api.Play in ForkJoinPool-1-worker-1 - Application started (Dev)
