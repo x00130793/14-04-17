@@ -39,5 +39,15 @@ public class Size extends Model {
         this.product = product;
     }
 
+    public static Finder<Long,Size> find = new Finder<Long,Size>(Size.class);
+
+    public static Map<String,String> options() {
+        LinkedHashMap<String,String> options = new LinkedHashMap<String,String>();
+        for(Size s: Size.find.orderBy("sizeName").findList()) {
+            options.put(s.toString(), s.sizeName);
+        }
+        return options;
+    }
+
     
 }

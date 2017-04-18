@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
 
 // Import models
 import models.*;
+import models.Size;
 import models.users.*;
 import models.productsAdditions.*;
 
@@ -46,6 +47,8 @@ public class HomeController extends Controller {
 
     private Environment env;
 
+    private Size size;
+
 
     //  Inject an instance of FormFactory it into the controller via its constructor
     @Inject
@@ -66,6 +69,7 @@ public class HomeController extends Controller {
        List<Category> categoriesList = Category.findAll();
         List<Product> productsList = new ArrayList<Product>();
         List<Product> newProductList = new ArrayList<Product>();
+	
         if (cat == 0) {
             // Get list of all categories in ascending order
             productsList = Product.findAll(filter);
@@ -95,7 +99,7 @@ public class HomeController extends Controller {
     Form<Comment> commentForm = formFactory.form(Comment.class);
     List<Comment> c = Comment.findByProduct(id);
 
-        return ok(productDetails.render(categoriesList, getUserFromSession(), cat, filter, p, c, commentForm));
+        return ok(productDetails.render(categoriesList, getUserFromSession(), cat, filter, p, c, commentForm, size));
     }
 
 

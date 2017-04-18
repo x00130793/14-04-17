@@ -28,6 +28,8 @@ import java.util.List;
 @With(CheckIfCustomer.class)
 public class ShoppingCtrl extends Controller {
 
+	private Size size;
+
     List<Category> categoriesList = Category.findAll();
 
     // Get a user - if logged in email will be set in the session

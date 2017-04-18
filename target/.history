@@ -89,3 +89,6 @@ h2-browser
 run
 clear
 run
+h2-browser
+run
+git init

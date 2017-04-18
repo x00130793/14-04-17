@@ -76,8 +76,8 @@ Seq[Any](format.raw/*1.124*/("""
 object profile extends profile_Scope0.profile
               /*
                   -- GENERATED --
-                  DATE: Tue Apr 11 10:22:25 IST 2017
-                  SOURCE: /home/wdd/Desktop/11-4-17/dsad/app/views/customer/profile.scala.html
+                  DATE: Fri Apr 14 14:25:12 IST 2017
+                  SOURCE: /home/wdd/Desktop/14-04-17/14-04-17/app/views/customer/profile.scala.html
                   HASH: 404a0ebb4ebc7b833a7149db03585c928827f010
                   MATRIX: 825->1|1043->123|1072->127|1128->175|1168->178|1199->183|1471->428|1486->434|1548->475|1638->538|1653->544|1714->584|1860->700
                   LINES: 27->1|32->1|35->4|35->4|35->4|38->7|46->15|46->15|46->15|47->16|47->16|47->16|57->26

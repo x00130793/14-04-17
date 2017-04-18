@@ -127,11 +127,18 @@ public class AdminController extends Controller {
         // Create a product form object (to hold submitted data)
         // 'Bind' the object to the submitted form (this copies the filled form)
         Form<Product> newProductForm = formFactory.form(Product.class).bindFromRequest();
+	
 	Form<Size> size = formFactory.form(Size.class).bindFromRequest();
 	Form<Size> size2 = formFactory.form(Size.class).bindFromRequest();
         // Check for errors (based on Product class annotations)
         if(newProductForm.hasErrors()) {
             // Display the form again
+	
+	
+
+	
+
+		
             return badRequest(addProduct.render(newProductForm, getUserFromSession(), size, size2));
         }
 
@@ -157,15 +164,13 @@ public class AdminController extends Controller {
 	//Create size
 	Size s = size.get();
 		s.setProduct(newProduct);
-		
-
 		s.save();
 
 	Size s2 = size2.get();
 		s2.setProduct(newProduct);
-		
+		s2.save();	
 
-		s2.save();
+	
 
 	
         // Get image data

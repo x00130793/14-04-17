@@ -24,15 +24,15 @@ import play.mvc.Http.Context.Implicit._
      object productDetails_Scope1 {
 import helper._
 
-class productDetails extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template7[List[models.Category],models.users.User,Long,String,models.Product,List[models.productsAdditions.Comment],Form[productsAdditions.Comment],play.twirl.api.HtmlFormat.Appendable] {
+class productDetails extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template8[List[models.Category],models.users.User,Long,String,models.Product,List[models.productsAdditions.Comment],Form[productsAdditions.Comment],models.Size,play.twirl.api.HtmlFormat.Appendable] {
 
   /**/
-  def apply/*2.2*/(categories: List[models.Category], user: models.users.User, catId: Long, filter: String, prod: models.Product, cList: List[models.productsAdditions.Comment], commentForm: Form[productsAdditions.Comment]):play.twirl.api.HtmlFormat.Appendable = {
+  def apply/*2.2*/(categories: List[models.Category], user: models.users.User, catId: Long, filter: String, prod: models.Product, cList: List[models.productsAdditions.Comment], commentForm: Form[productsAdditions.Comment], size: models.Size):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
 
 
-Seq[Any](format.raw/*2.206*/("""
+Seq[Any](format.raw/*2.225*/("""
 """),_display_(/*3.2*/main("productDetails", user,  categories, catId, filter)/*3.58*/ {_display_(Seq[Any](format.raw/*3.60*/("""
 				"""),format.raw/*4.5*/("""<div class="col-sm-12 padding-right">
 					<div class="product-details"><!--product-details-->
@@ -72,16 +72,10 @@ Seq[Any](format.raw/*2.206*/("""
 								
 								<div class="form-group ">
   								<label for="sel1">Size:</label>
-								  <select class="form-control" id="sel1">
-								    <option>XS</option>
-								    <option>S</option>
-								    <option>M</option>
-								    <option>L</option>
-								    <option>XL</option>
-								    <option>XXL</option>
-								    <option>XXXL</option>
-								  </select>
-								</div>
+								  """),_display_(/*42.12*/for((value, sizeName) <- Size.options) yield /*42.50*/ {_display_(Seq[Any](format.raw/*42.52*/("""
+            							    """),format.raw/*43.24*/("""<input type="checkbox" name="Sizes" value=""""),_display_(/*43.68*/value),format.raw/*43.73*/("""" />"""),_display_(/*43.78*/sizeName),format.raw/*43.86*/("""<br>        
+        							  """)))}),format.raw/*44.19*/("""
+								"""),format.raw/*45.9*/("""</div>
 								<p><b>Availability:</b> In Stock</p>
 								<p><b>Condition:</b> New</p>
 								<p><b>Brand:</b> A&JS</p>
@@ -92,39 +86,40 @@ Seq[Any](format.raw/*2.206*/("""
 
 						<div class="tab-pane fade active in" id="reviews" >
 							<div class="col-sm-12">
-								"""),_display_(/*62.10*/for(c <- cList) yield /*62.25*/ {_display_(Seq[Any](format.raw/*62.27*/("""
-									"""),format.raw/*63.10*/("""<div class="product-information">
+								"""),_display_(/*56.10*/for(c <- cList) yield /*56.25*/ {_display_(Seq[Any](format.raw/*56.27*/("""
+									"""),format.raw/*57.10*/("""<div class="product-information">
 									<ul>
-										<li><a href=""><i class="fa fa-user"></i>"""),_display_(/*65.53*/user/*65.57*/.getfName()),format.raw/*65.68*/("""</a></li>
+										<li><a href=""><i class="fa fa-user"></i>"""),_display_(/*59.53*/user/*59.57*/.getfName()),format.raw/*59.68*/("""</a></li>
 										<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
 										<li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
 									</ul>
-									<p> """),_display_(/*69.15*/c/*69.16*/.getContent),format.raw/*69.27*/("""</p>
+									<p> """),_display_(/*63.15*/c/*63.16*/.getContent),format.raw/*63.27*/("""</p>
 									</div>
-								""")))}),format.raw/*71.10*/("""
-								"""),format.raw/*72.9*/("""<p><b>Write Your Review</b></p>
+								""")))}),format.raw/*65.10*/("""
+								"""),format.raw/*66.9*/("""<p><b>Write Your Review</b></p>
 
 
 
-									"""),_display_(/*76.11*/form(action = routes.CustomerCtrl.comment(catId, filter, prod.getId()), 'class -> "form-horizontal", 'role -> "form")/*76.128*/ {_display_(Seq[Any](format.raw/*76.130*/("""
-									"""),_display_(/*77.11*/inputText(commentForm("content"), '_label -> "Write your comment here", 'class -> "form-control")),format.raw/*77.108*/("""
-										"""),format.raw/*78.11*/("""<input type="submit" value="Add comment" class="btn btn-default pull-right">
-									""")))}),format.raw/*79.11*/("""
+									"""),_display_(/*70.11*/form(action = routes.CustomerCtrl.comment(catId, filter, prod.getId()), 'class -> "form-horizontal", 'role -> "form")/*70.128*/ {_display_(Seq[Any](format.raw/*70.130*/("""
+									"""),_display_(/*71.11*/inputText(commentForm("content"), '_label -> "Write your comment here", 'class -> "form-control")),format.raw/*71.108*/("""
+										"""),format.raw/*72.11*/("""<input type="submit" value="Add comment" class="btn btn-default pull-right">
+									""")))}),format.raw/*73.11*/("""
 
 
-							"""),format.raw/*82.8*/("""</div>
+							"""),format.raw/*76.8*/("""</div>
 						</div>
 					
 					
 				</div>
-""")))}))
+""")))}),format.raw/*81.2*/("""
+"""))
       }
     }
   }
 
-  def render(categories:List[models.Category],user:models.users.User,catId:Long,filter:String,prod:models.Product,cList:List[models.productsAdditions.Comment],commentForm:Form[productsAdditions.Comment]): play.twirl.api.HtmlFormat.Appendable = apply(categories,user,catId,filter,prod,cList,commentForm)
+  def render(categories:List[models.Category],user:models.users.User,catId:Long,filter:String,prod:models.Product,cList:List[models.productsAdditions.Comment],commentForm:Form[productsAdditions.Comment],size:models.Size): play.twirl.api.HtmlFormat.Appendable = apply(categories,user,catId,filter,prod,cList,commentForm,size)
 
-  def f:((List[models.Category],models.users.User,Long,String,models.Product,List[models.productsAdditions.Comment],Form[productsAdditions.Comment]) => play.twirl.api.HtmlFormat.Appendable) = (categories,user,catId,filter,prod,cList,commentForm) => apply(categories,user,catId,filter,prod,cList,commentForm)
+  def f:((List[models.Category],models.users.User,Long,String,models.Product,List[models.productsAdditions.Comment],Form[productsAdditions.Comment],models.Size) => play.twirl.api.HtmlFormat.Appendable) = (categories,user,catId,filter,prod,cList,commentForm,size) => apply(categories,user,catId,filter,prod,cList,commentForm,size)
 
   def ref: this.type = this
 
@@ -138,11 +133,11 @@ Seq[Any](format.raw/*2.206*/("""
 object productDetails extends productDetails_Scope0.productDetails_Scope1.productDetails
               /*
                   -- GENERATED --
-                  DATE: Tue Apr 11 10:22:22 IST 2017
-                  SOURCE: /home/wdd/Desktop/11-4-17/dsad/app/views/productDetails.scala.html
-                  HASH: db9c4e836ce929374a3103465ed9854cab96ac08
-                  MATRIX: 947->18|1247->222|1274->224|1338->280|1377->282|1408->287|1640->493|1672->505|2300->1106|2313->1110|2342->1118|2425->1174|2438->1178|2468->1187|2594->1286|2609->1292|2667->1329|3490->2125|3521->2140|3561->2142|3599->2152|3726->2252|3739->2256|3771->2267|3987->2456|3997->2457|4029->2468|4090->2498|4126->2507|4198->2552|4325->2669|4366->2671|4404->2682|4523->2779|4562->2790|4680->2877|4717->2887
-                  LINES: 30->2|35->2|36->3|36->3|36->3|37->4|41->8|41->8|62->29|62->29|62->29|66->33|66->33|66->33|69->36|69->36|69->36|95->62|95->62|95->62|96->63|98->65|98->65|98->65|102->69|102->69|102->69|104->71|105->72|109->76|109->76|109->76|110->77|110->77|111->78|112->79|115->82
+                  DATE: Fri Apr 14 14:47:58 IST 2017
+                  SOURCE: /home/wdd/Desktop/14-04-17/14-04-17/app/views/productDetails.scala.html
+                  HASH: 11600ffb195936e91984580c63c2e1a58a36b5f2
+                  MATRIX: 959->18|1278->241|1305->243|1369->299|1408->301|1439->306|1671->512|1703->524|2331->1125|2344->1129|2373->1137|2456->1193|2469->1197|2499->1206|2625->1305|2640->1311|2698->1348|2910->1533|2964->1571|3004->1573|3056->1597|3127->1641|3153->1646|3185->1651|3214->1659|3276->1690|3312->1699|3659->2019|3690->2034|3730->2036|3768->2046|3895->2146|3908->2150|3940->2161|4156->2350|4166->2351|4198->2362|4259->2392|4295->2401|4367->2446|4494->2563|4535->2565|4573->2576|4692->2673|4731->2684|4849->2771|4886->2781|4960->2825
+                  LINES: 30->2|35->2|36->3|36->3|36->3|37->4|41->8|41->8|62->29|62->29|62->29|66->33|66->33|66->33|69->36|69->36|69->36|75->42|75->42|75->42|76->43|76->43|76->43|76->43|76->43|77->44|78->45|89->56|89->56|89->56|90->57|92->59|92->59|92->59|96->63|96->63|96->63|98->65|99->66|103->70|103->70|103->70|104->71|104->71|105->72|106->73|109->76|114->81
                   -- GENERATED --
               */
           

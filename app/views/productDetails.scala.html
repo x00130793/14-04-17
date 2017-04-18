@@ -39,7 +39,9 @@
 								
 								<div class="form-group ">
   								<label for="sel1">Size:</label>
-								  
+								  @for((value, sizeName) <- Size.options) {
+            							    <input type="checkbox" name="Sizes" value="@value" />@sizeName<br>        
+        							  }
 								</div>
 								<p><b>Availability:</b> In Stock</p>
 								<p><b>Condition:</b> New</p>
